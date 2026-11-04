@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playing Game - VortXshadow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a1a;
+      color: white;
+      font-family: system-ui, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 12px 20px;
+      background: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header a {
+      color: #00f0ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+    .note {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="index.html">← Back to VortXshadow</a>
+    <span id="game-title">Loading...</span>
+  </div>
+
+  <div class="note" id="message">
+    Loading game...
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const gameName = params.get("game") || "Unknown Game";
+
+    document.getElementById("game-title").textContent = gameName;
+    document.title = gameName + " - VortXshadow";
+
+    // For now we still send them to CrazyGames, but they stay inside your site structure
+    // Later you can replace this with real embeds
+    document.getElementById("message").innerHTML = `
+      <p style="margin-bottom:15px">Opening <strong>${gameName}</strong></p>
+      <a href="https://www.crazygames.com/search?q=${encodeURIComponent(gameName)}" 
+         target="_blank" 
+         style="background:#00f0ff; color:black; padding:12px 24px; border-radius:8px; text-decoration:none; font-weight:bold;">
+         Play on CrazyGames
+      </a>
+      <p style="margin-top:20px; font-size:14px;">(You can later replace this with real game embeds)</p>
+    `;
+  </script>
+</body>
+</html>
