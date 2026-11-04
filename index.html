@@ -488,13 +488,10 @@ function renderGames() {
     category.textContent = game[1];
 
     const link = document.createElement("a");
-    link.className = "play";
-    link.textContent = "PLAY GAME ↗";
-    link.href =
-      "https://www.crazygames.com/search?q=" +
-      encodeURIComponent(game[0]);
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+link.className = "play";
+link.textContent = "PLAY GAME";
+link.href = `play.html?game=${encodeURIComponent(game[0])}`;
+// Remove target="_blank" so it stays on your site
 
     info.append(title, category, link);
     card.append(art, info);
