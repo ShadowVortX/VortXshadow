@@ -1,0 +1,501 @@
+# VortXshadow
+My gaming website
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080914">
+<title>VortXshadow | Gaming Universe</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #080914;
+  --panel: #111426;
+  --purple: #a855f7;
+  --cyan: #00e5ff;
+  --text: #f5f5ff;
+  --muted: #9ba3bb;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 20px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #24263b;
+  background: #0c0e1d;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--cyan);
+  text-shadow: 0 0 15px var(--cyan);
+}
+
+.logo span {
+  color: var(--purple);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: var(--cyan);
+}
+
+.hero {
+  text-align: center;
+  padding: 85px 20px 65px;
+  background:
+    radial-gradient(ellipse at 50% 10%, #402071 0%, transparent 60%),
+    linear-gradient(180deg, #111126, var(--bg));
+}
+
+.hero h1 {
+  font-size: clamp(38px, 7vw, 68px);
+  font-weight: 900;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #00e5ff, #a855f7, #ff4de1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: #c2c5d8;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.hero button {
+  background: linear-gradient(90deg, #00bcd4, #8b35ef);
+  color: white;
+  padding: 13px 28px;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 22px #7138d5;
+}
+
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: 35px 20px;
+}
+
+.section-title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.section-title span {
+  color: var(--cyan);
+}
+
+.search-area {
+  margin-bottom: 25px;
+}
+
+#search {
+  width: 100%;
+  padding: 16px;
+  background: var(--panel);
+  color: white;
+  border: 1px solid #383b5b;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+#search:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px #00e5ff44;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.filter {
+  background: #171a2e;
+  color: #d6d9ed;
+  border: 1px solid #343752;
+  border-radius: 20px;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+
+.filter.active,
+.filter:hover {
+  background: #7533d4;
+  border-color: var(--purple);
+  color: white;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 18px;
+}
+
+.game-card {
+  background: var(--panel);
+  border: 1px solid #292c46;
+  border-radius: 13px;
+  overflow: hidden;
+  transition: .25s;
+  min-width: 0;
+}
+
+.game-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px #00e5ff28;
+}
+
+.game-art {
+  height: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 54px;
+  background: linear-gradient(135deg, #23245b, #52217a, #104e67);
+}
+
+.game-info {
+  padding: 14px;
+}
+
+.game-info h3 {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.game-info p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+
+.play {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #087eaa, #7533d4);
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.play:hover {
+  filter: brightness(1.25);
+}
+
+#count {
+  color: var(--cyan);
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+#empty {
+  display: none;
+  color: var(--muted);
+  text-align: center;
+  padding: 40px;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 35px 15px;
+  background: #0c0e1d;
+  border-top: 1px solid #292c46;
+  text-align: center;
+  color: var(--muted);
+  line-height: 2;
+}
+
+footer strong {
+  color: var(--cyan);
+}
+
+@media(max-width: 600px) {
+  header {
+    padding: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  nav a {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .game-art {
+    height: 100px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">VortX<span>shadow</span></div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>ENTER THE GAMEVERSE</h1>
+  <p>
+    One destination. 50+ games. Endless fun.<br>
+    Choose your game and start exploring!
+  </p>
+  <button onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
+    EXPLORE GAMES
+  </button>
+</section>
+
+<main id="games">
+
+  <h2 class="section-title">DISCOVER <span>GAMES</span></h2>
+
+  <div class="search-area">
+    <input
+      id="search"
+      type="search"
+      placeholder="🔍 Search your favourite game..."
+      oninput="renderGames()"
+    >
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div id="count"></div>
+
+  <div class="game-grid" id="gameGrid"></div>
+
+  <div id="empty">No games found. Try another search!</div>
+
+</main>
+
+<footer id="about">
+  <h2><strong>VortXshadow</strong></h2>
+  <p>Your gaming universe starts here.</p>
+  <p>Made with passion by a gamer.</p>
+  <p>© 2026 VortXshadow. All rights reserved.</p>
+  <p>Games belong to their respective creators and publishers.</p>
+</footer>
+
+<script>
+
+const games = [
+
+  // PUZZLE GAMES
+  ["Mahjongg Solitaire","Puzzle","🀄"],
+  ["Piles of Mahjong","Puzzle","🀄"],
+  ["Words of Wonders","Puzzle","🔤"],
+  ["Word Wipe","Puzzle","📝"],
+  ["Numicolor","Puzzle","🎨"],
+  ["Tower Swap","Puzzle","🏰"],
+  ["Hexa Stack","Puzzle","🔷"],
+  ["Mahjong Connect Legacy","Puzzle","🀄"],
+  ["Mahjong Online","Puzzle","🀄"],
+  ["What's the Difference","Puzzle","🔍"],
+  ["Block Blast","Puzzle","🧩"],
+  ["Wordmeister","Puzzle","📚"],
+  ["Bubble Shooter","Puzzle","🫧"],
+  ["Find the Cow","Puzzle","🐮"],
+  ["Nonogram Square","Puzzle","⬜"],
+  ["Wood Screw Bolts Puzzle","Puzzle","🔩"],
+  ["Screw Sorting","Puzzle","⚙️"],
+  ["2048","Puzzle","🔢"],
+  ["Sudoku","Puzzle","🔢"],
+  ["Cut the Rope","Puzzle","🍬"],
+
+  // CASUAL GAMES
+  ["Piece of Cake Merge and Bake","Casual","🍰"],
+  ["Color Tap Coloring by Numbers","Casual","🌈"],
+  ["Tropical Merge","Casual","🌴"],
+  ["Open House","Casual","🏠"],
+  ["Farm Merge Valley","Casual","🌾"],
+  ["Designville Merge and Design","Casual","🛋️"],
+  ["Solitaire Home Story","Casual","🏡"],
+  ["Paint to Hide","Casual","🎨"],
+  ["Goods Triple Match 3D","Casual","📦"],
+  ["Slice Master","Casual","🍉"],
+  ["Classic Solitaire","Casual","🃏"],
+  ["Spider Solitaire","Casual","🕷️"],
+  ["Uno Online","Casual","🃏"],
+  ["Backgammon Online","Casual","🎲"],
+
+  // SIMULATION
+  ["Stone Grass Mowing Simulator","Simulation","🌱"],
+  ["Duck Life","Simulation","🦆"],
+  ["Idle Startup Tycoon","Simulation","🏢"],
+  ["Farm Land","Simulation","🚜"],
+  ["Restaurant Simulator","Simulation","🍽️"],
+  ["Airplane Flight Pilot Simulator","Simulation","✈️"],
+  ["City Builder","Simulation","🏙️"],
+  ["Pet Simulator","Simulation","🐶"],
+
+  // SPORTS
+  ["8 Ball Billiards Classic","Sports","🎱"],
+  ["Mini Golf Club","Sports","⛳"],
+  ["2 Minute Football","Sports","⚽"],
+  ["Basketball Stars","Sports","🏀"],
+  ["Tennis Masters","Sports","🎾"],
+  ["Soccer Random","Sports","⚽"],
+  ["Basketball Legends","Sports","🏀"],
+
+  // EXPLORATION AND CLASSICS
+  ["Free GeoGuessr","Adventure","🌍"],
+  ["Hidden Objects Online Game","Adventure","🔎"],
+  ["Mergest Kingdom","Adventure","🏰"],
+  ["Farland","Adventure","🌳"],
+  ["Fireboy and Watergirl","Adventure","💧"],
+  ["Red Ball","Adventure","🔴"],
+  ["Run 3","Adventure","🏃"],
+  ["Chess","Board","♟️"]
+];
+
+const categories = [
+  "All",
+  "Puzzle",
+  "Casual",
+  "Simulation",
+  "Sports",
+  "Adventure",
+  "Board"
+];
+
+let activeCategory = "All";
+
+const filters = document.getElementById("filters");
+
+categories.forEach(category => {
+  const button = document.createElement("button");
+  button.className = "filter" +
+    (category === "All" ? " active" : "");
+  button.textContent = category;
+
+  button.onclick = () => {
+    activeCategory = category;
+
+    document.querySelectorAll(".filter").forEach(btn => {
+      btn.classList.toggle(
+        "active",
+        btn.textContent === category
+      );
+    });
+
+    renderGames();
+  };
+
+  filters.appendChild(button);
+});
+
+function renderGames() {
+
+  const query = document
+    .getElementById("search")
+    .value.toLowerCase();
+
+  const grid = document.getElementById("gameGrid");
+  grid.innerHTML = "";
+
+  const filtered = games.filter(game => {
+    const matchesSearch =
+      game[0].toLowerCase().includes(query);
+
+    const matchesCategory =
+      activeCategory === "All" ||
+      game[1] === activeCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  document.getElementById("count").textContent =
+    `Showing ${filtered.length} of ${games.length} games`;
+
+  document.getElementById("empty").style.display =
+    filtered.length === 0 ? "block" : "none";
+
+  filtered.forEach(game => {
+
+    const card = document.createElement("article");
+    card.className = "game-card";
+
+    const art = document.createElement("div");
+    art.className = "game-art";
+    art.textContent = game[2];
+
+    const info = document.createElement("div");
+    info.className = "game-info";
+
+    const title = document.createElement("h3");
+    title.textContent = game[0];
+
+    const category = document.createElement("p");
+    category.textContent = game[1];
+
+    const link = document.createElement("a");
+    link.className = "play";
+    link.textContent = "PLAY GAME ↗";
+    link.href =
+      "https://www.crazygames.com/search?q=" +
+      encodeURIComponent(game[0]);
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    info.append(title, category, link);
+    card.append(art, info);
+    grid.appendChild(card);
+  });
+}
+
+renderGames();
+
+</script>
+
+</body>
+</html>

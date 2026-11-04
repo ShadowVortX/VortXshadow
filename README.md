@@ -1,2 +1,0 @@
-# VortXshadow
-My gaming website
